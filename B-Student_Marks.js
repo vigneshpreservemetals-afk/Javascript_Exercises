@@ -1,50 +1,76 @@
 
-const welcomeMessage = () => {
 
-    return "welcome to Student Marklist";
+ // Example 
 
-}
+ const welcomeMessage = () => {
 
-const markCalculator =(studentName,m1,m2,m3) => {
+    return "Welcome to Employee Salary Details";
+ }
 
-    const total= m1+m2+m3;
-    const average = total/3;
-    const result = m1 >=35 && m2 >=35 && m3 >=35 ? "Pass": "Fail" ;
+ const salaryCalculator =(employeeName, basicSalary, noOfDaysPresent) => {
 
-    let grade;
+ const hra = basicSalary* 0.20;
 
-    if(result == "Fail") {
-        grade = "No Grade";
-    } else if (average >= 90){
-        grade = "A-Grade";
-    } else if(average >= 70){
-        grade = "B-Grade";
-    } else {
-        grade= "C-Grade";
-    }
+ const ta = basicSalary* 0.12;
 
-    return{
-        studentName,
-        m1,
-        m2,
-        m3,
-        total,
-        average,
-        result,
-        grade
-    };
+ const pf = basicSalary* 0.08;
+
+ let attendance;
+
+ if(noOfDaysPresent >= 26){
+    attendance = "Best Employee";
+ } else if (noOfDaysPresent >= 22){
+    attendance = "Good Employee";
+ } else {
+    attendance = "Worst Employee";
+ }
+
+//  const bonus = noOfDaysPresent> 26 ? basicSalary *0.10: 0; 
+
+ let bonus;
+
+ if(noOfDaysPresent >= 26){
+    bonus = basicSalary*0.10;
+ } else if (noOfDaysPresent >= 22){
+     bonus = basicSalary*0.08;
+ } else {
+    bonus = basicSalary*0;
+ }
+
+const grossSalary = basicSalary+ hra + ta;
+
+const netSalary = grossSalary -pf +bonus;
+
+return{
+    employeeName,
+    basicSalary,
+    hra,
+    ta,
+    pf,
+    noOfDaysPresent,
+    attendance,
+    bonus,
+    grossSalary,
+    netSalary
 };
 
-const students =[
-    {name:"vignesh", m1:80, m2:45, m3:60 },
-    { name:"Kiruba", m1:30, m2:45, m3:60 },
-    { name:"Abi", m1:45, m2:35, m3:20 }
+};
+
+const employees = [
+    {name:"Vignesh", basicSalary:50000, noOfDaysPresent:20},
+    {name:"Kiruba", basicSalary:60000, noOfDaysPresent:19},
+    {name:"Abi", basicSalary:70000, noOfDaysPresent:26},
+    {name:"Gopi", basicSalary:80000, noOfDaysPresent:15}
 ]
 
-for(let i=0; i<students.length; i++){
-    const student = students[i];
-    const result = markCalculator(student.name,student.m1,student.m2,student.m3);
+console.log(welcomeMessage());
 
-    console.log("----------")
-    console.log(result)
+for(let i=0; i < employees.length; i++){
+    const emp = employees[i];
+    const result = salaryCalculator(emp.name, emp.basicSalary, emp.noOfDaysPresent)
+
+
+    console.log("---------");
+    console.log(result);
 }
+
