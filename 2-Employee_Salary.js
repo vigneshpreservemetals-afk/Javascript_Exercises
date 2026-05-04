@@ -332,6 +332,12 @@ for(let i=0; i<employees.length; i++){
 
 
 
+const weclomeMessage() => {
+
+return "Welcome to Employee Salary"
+}
+
+
 
 
 
